@@ -8,7 +8,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
         console.log("Retrieved Data");
 
         $scope.contactlist = response.data;
-
+        
     });
 
 }]);
