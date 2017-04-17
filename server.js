@@ -16,9 +16,5 @@ app.get('/contactlist', function(req,res){
 
 });
 
-// app.get("/", function(req, res){
-//   res.send("hello World")
-// });
-
 app.listen(3000);
 console.log("Server running on port 3000");
