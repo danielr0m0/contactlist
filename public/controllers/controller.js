@@ -18,10 +18,12 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
 
     $scope.addContact = function() {
         console.log($scope.contact);
+         $scope.contact._id="";
         $http.post('/contactlist', $scope.contact).then(function(response) {
             console.log(response);
             refresh();
         });
+        deselect();
     };
 
     $scope.remove = function(id) {
@@ -34,7 +36,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.edit = function(id) {
         console.log(id);
         $http.get('/contactlist/' + id).then(function(response) {
-            $scope.contact = response;
+            $scope.contact = response.data;
         });
     };  
 
@@ -42,11 +44,15 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
         console.log($scope.contact._id);
         $http.put('/contactlist/' + $scope.contact._id, $scope.contact).then(function(response) {
             refresh();
+            $scope.contact._id="";
         })
     };
 
     $scope.deselect = function() {
-         $scope.contact = "";
+        if ($scope.contact._id !== null) {
+        $scope.contact._id = null;
+      }
+         $scope.contact = null;
     }
 
 
